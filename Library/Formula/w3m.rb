@@ -8,7 +8,9 @@ class W3m <Formula
   depends_on 'bdw-gc'
 
   def install
-    system "./configure", "--prefix=#{prefix}", "--disable-debug", "--disable-dependency-tracking"
+    # Remove the dependency on gtk2 and gdk-pixbuf by only building with the
+    # imlib and imlib2 image libraries.
+    system "./configure", "--prefix=#{prefix}", "--disable-debug", "--disable-dependency-tracking", "--with-imagelib='imlib imlib2'"
     system "make install"
   end
 end
